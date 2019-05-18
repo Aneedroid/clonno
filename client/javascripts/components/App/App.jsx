@@ -1,15 +1,32 @@
 import React from 'react';
-import Overview from 'client/javascripts/components/Overview/Overview';
+import PropTypes from 'prop-types';
+
+import Overview from '../Overview';
+import Board from '../Board/Board';
 
 import './App.css';
 
-const App = () => {
-  return (
-    <div>
-      <Overview title={'Clonno'} subTitle={'A minimalist list making application for team collaboration activities'}/>
-      {/* <Nav/> */}
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount = () => {
+    this.props.setupApp();
+  }
+
+  render = () => {
+    return (
+      <div>
+        <Overview title={'Clonno'} subTitle={'A minimalist list making application for team collaboration activities'}/>
+        <Board />
+      </div>
+    );
+  }
+}
+
+App.propTypes = {
+  setupApp: PropTypes.func.isRequired,
 };
 
 export default App;
