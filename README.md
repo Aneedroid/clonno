@@ -1,6 +1,6 @@
 # dawnJs
 
-Just another minimal client side rendering Node-React-Redux-Saga boiler plate, but better.
+A minimalist list making application for team collaboration activities.
 
 ## Getting Started
 
@@ -50,10 +50,6 @@ Give an example
 * [Redux](https://redux.js.org/)
 * [Redux-Saga](https://redux-saga.js.org/)
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
 ## Authors
 
 * **Aneerudh Prabhakaran**
@@ -61,7 +57,3 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 ## License
 
 This project is licensed under the MIT License.
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
