@@ -38,7 +38,7 @@ exports.create = (req, res) => {
     boards: [board],
   });
 
-  // Save Note in the database
+  // Save Board in the database
   clonno.save()
     .then(data => {
       res.status(200).send(data);
@@ -52,8 +52,8 @@ exports.create = (req, res) => {
 // Retrieve and return all Board from the database.
 exports.findAll = (req, res) => {
   models.ClonnoModel.find()
-    .then(notes => {
-      res.status(200).send(notes);
+    .then(boards => {
+      res.status(200).send(boards[0]);
     }).catch(err => {
       res.status(500).send({
         message: err.message || 'Some error occurred while retrieving Boards.',
