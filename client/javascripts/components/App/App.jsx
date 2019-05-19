@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Overview from '../Overview';
-import Board from '../Board/Board';
+import Board from '../Board';
 
-import './App.css';
+import './App.style.scss';
 
 class App extends React.Component {
   constructor(props) {
