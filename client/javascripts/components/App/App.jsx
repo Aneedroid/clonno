@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <div>
         <Overview title={'Clonno'} subTitle={'A minimalist list making application for team collaboration activities'}/>
-        <Board />
+        <div className="app__board"><Board /></div>
       </div>
     );
   }

@@ -12,7 +12,7 @@ describe('<App />', () => {
       const wrapper = shallow(<App {...props} />);
       expect(wrapper.exists()).toBeTruthy();
       expect(wrapper.find('Overview').exists()).toBeTruthy();
-      expect(wrapper.find('Board').exists()).toBeTruthy();
+      expect(wrapper.find('.app__board').exists()).toBeTruthy();
     });
   });
 

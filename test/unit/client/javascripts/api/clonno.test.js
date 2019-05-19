@@ -22,7 +22,7 @@ describe('api/clonno', () => {
 
     const data = await getClonnoData();
 
-    expect(http.get).toHaveBeenCalledWith('/clonno');
+    expect(http.get).toHaveBeenCalledWith('/api/boards');
     expect(data.boards[0].title).toStrictEqual('Superhero');
   });
 
@@ -31,7 +31,7 @@ describe('api/clonno', () => {
 
     const data = await getClonnoData();
 
-    expect(http.get).toHaveBeenCalledWith('/clonno');
+    expect(http.get).toHaveBeenCalledWith('/api/boards');
     expect(data).toStrictEqual({});
   });
 });

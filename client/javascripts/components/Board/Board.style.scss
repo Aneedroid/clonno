@@ -1,0 +1,19 @@
+.board {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+
+    &__name {
+        margin-left: 1.5rem;
+        font-family: fantasy;
+        font-style: italic;
+        font-size: 2.25rem;
+    }
+
+    &__lists {
+        flex-direction: column;
+        padding: 2rem;
+        margin-top: 1rem;
+        align-self: flex-start;
+    }
+}

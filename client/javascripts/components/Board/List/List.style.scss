@@ -1,0 +1,14 @@
+.list {
+    display: flex;
+    flex-direction: column;
+
+    width: 20rem;
+    background-color: aliceblue;
+    padding: 0.8rem;
+    border-radius: 0.35rem;
+
+    &__title {
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+}
