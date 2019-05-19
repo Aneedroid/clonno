@@ -22,13 +22,9 @@ app.set('view engine', '.html');
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.use('/app', routes);
+app.use('/api', routes);
 
-app.get('/app/home', (req, res) => {
-  return res.render('home');
-});
-
-app.get('/app/*', async (req, res) => {
+app.get('/overview', (req, res) => {
   return res.render('home');
 });
 
