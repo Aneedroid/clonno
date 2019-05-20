@@ -13,11 +13,12 @@ const Card = ({ title, description, comments }) => {
 
 Card.defaultProps = {
   comments: [],
+  description: '',
 };
 
 Card.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   comments: PropTypes.arrayOf(PropTypes.string),
 };
 

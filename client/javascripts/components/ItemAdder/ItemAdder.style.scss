@@ -1,0 +1,52 @@
+.item-adder {
+    &-passive {
+        opacity: 0.5;
+        background-color: beige;
+        min-height: 2rem;
+        padding: 0.8rem;
+        border-radius: 0.25rem;
+        width: 18.5rem;
+
+        &:hover {
+            cursor: pointer;
+            background-color: antiquewhite; 
+        }
+    }
+
+    &-active {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        border-radius: 0.25rem;
+        padding: 0.8rem;
+        margin: 0 1rem;
+        background-color: darkkhaki;
+        min-width: 16rem;
+
+        input {
+            min-height: 3rem;
+            border-radius: 0.45rem;
+            padding: 0 0 1rem 0.5rem;
+        }
+
+        &__bottom {
+            display: flex;
+            flex-direction: row;
+            margin-top: 0.5rem;
+
+            &-close {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            button {
+                margin-right: 1rem;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

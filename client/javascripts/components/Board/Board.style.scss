@@ -3,15 +3,27 @@
     flex-direction: column;
     margin-top: 1rem;
 
-    &__name {
-        margin-left: 1.5rem;
-        font-family: fantasy;
-        font-style: italic;
-        font-size: 2.25rem;
+    &-top{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &__name {
+            margin-left: 1.5rem;
+            font-family: fantasy;
+            font-style: italic;
+            font-size: 2.25rem;
+        }
+
+        &__save {
+            margin-right: 1.5rem;
+            font-size: 2.25rem;
+        }
     }
 
     &__lists {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
         padding: 2rem;
         margin-top: 1rem;
         align-self: flex-start;
