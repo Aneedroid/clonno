@@ -1,4 +1,4 @@
-import { UPDATE_CLONNO, UPDATE_CARD, UPDATE_LIST } from '../actions/types';
+import { UPDATE_CLONNO, UPDATE_CARD, UPDATE_LIST, UPDATE_COMMENT } from '../actions/types';
 
 const clonno = {};
 

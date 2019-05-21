@@ -4,6 +4,8 @@ import {
   UPDATE_LIST,
   UPDATE_BOARD,
   UPDATE_CARD,
+  UPDATE_CLONNO_TO_MONGO,
+  UPDATE_COMMENT,
 } from './types';
 
 export const fetchClonno = () => {
@@ -24,4 +26,13 @@ export const updateBoard = (boardId, boardData) => {
 
 export const updateList = (boardId, listId, listData) => {
   return { type: UPDATE_LIST, boardId, listId, listData };
+};
+
+export const updateClonnoToMongo = saveClonno => {
+  return { type: UPDATE_CLONNO_TO_MONGO, saveClonno };
+};
+
+export const updateComment = (boardId, listId, cardId, commentId, commentData) => {
+  console.log('Reached action');
+  return { type: UPDATE_COMMENT, boardId, listId, cardId, commentId, commentData };
 };
