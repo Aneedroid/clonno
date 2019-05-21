@@ -20,17 +20,21 @@ class ItemAdder extends React.Component {
   };
 
   onAddhandler = () => {
-    const { type, boardId, listId, updateCard, updateList } = this.props;
+    const { type, boardId, listId, updateCard, updateList, updateComment, cardId } = this.props;
     const { inputValue, lastBoxIndex } = this.state;
     const body = {
       title: inputValue,
     };
 
     if (type === 'Card' && updateCard) {
+      console.log('Rendering Add Card matter: ', boardId, listId, lastBoxIndex, body);
       updateCard(boardId, listId, lastBoxIndex, body);
     }
     if (type === 'List' && updateList) {
       updateList(boardId, lastBoxIndex, body);
+    }
+    if (type === 'Comment' && updateComment) {
+      updateComment(boardId, listId, cardId, lastBoxIndex, inputValue);
     }
 
     this.setState({
@@ -66,11 +70,14 @@ class ItemAdder extends React.Component {
   }
 
   renderAdderPassive = () => {
+    const { lastBoxIndex } = this.state;
+    const str = lastBoxIndex > 0 ? 'another' : 'a';
+    const displayString = `Add ${str} ${this.props.type}`;
     return (
       <div className="item-adder-passive"
         onClick={() => this.setState({ openAdd: true })}
         role="presentation">
-            + Add another {this.props.type}
+        {displayString}
       </div>
     );
   };
@@ -88,6 +95,7 @@ ItemAdder.propTypes = {
   type: PropTypes.string.isRequired,
   boardId: PropTypes.number,
   listId: PropTypes.number,
+  cardId: PropTypes.number,
   updateCard: PropTypes.func,
   updateList: PropTypes.func,
 };
