@@ -11,20 +11,76 @@ export default (state = clonno, action) => {
     }   
     case UPDATE_CARD: {
       let newState = { ...state };
+      
       const boardToUpdate = newState.boards[action.boardId];
       const listToUpdate = boardToUpdate.lists[action.listId];
-      if (action.cardId > 0) {
-        listToUpdate.cards[action.cardId] = action.cardData;
+      const cardData = action.cardData;
+
+      if (cardData) {
+        if (action.cardId > 0) {
+          const newCardContents = {
+            ...listToUpdate.cards[action.cardId],
+            ...cardData,
+          };
+          listToUpdate.cards[action.cardId] = newCardContents;
+        } else {
+          if (!listToUpdate.cards) {
+            listToUpdate.cards = [];
+          }
+          const newCardContents = {
+            ...listToUpdate.cards[action.cardId],
+            ...cardData,
+          };
+          listToUpdate.cards[action.cardId] = newCardContents;
+        }
       } else {
-        listToUpdate.cards = [];
-        listToUpdate.cards[action.cardId] = action.cardData;
+        listToUpdate.cards.splice(action.cardId, 1);
       }
+
+
       return newState;
     }
     case UPDATE_LIST: {
       let newState = { ...state };
       const boardToUpdate = newState.boards[action.boardId];
-      boardToUpdate.lists[action.listId] = action.listData;
+      const listData = action.listData;
+
+      if (listData) {
+        if (action.listId > 0) {
+          const newListContents = {
+            ...boardToUpdate.lists[action.listId],
+            ...listData,
+          };
+          boardToUpdate.lists[action.listId] = newListContents;
+        }
+        else {
+          if (!boardToUpdate.lists) {
+            boardToUpdate.lists = [];
+          }
+          const newListContents = {
+            ...boardToUpdate.lists[action.listId],
+            ...listData,
+          };
+          boardToUpdate.lists[action.listId] = newListContents;
+        }
+      } else {
+        boardToUpdate.lists.splice(action.listId, 1);
+      }
+
+      return newState;
+    }
+    case UPDATE_COMMENT: {
+      let newState = { ...state };
+      const boardToUpdate = newState.boards[action.boardId];
+      const listToUpdate = boardToUpdate.lists[action.listId];
+      const cardToUpdate = listToUpdate.cards[action.cardId];
+
+      if (action.commentId > 0) {
+        cardToUpdate.comments[action.commentId] = action.commentData;
+      } else {
+        cardToUpdate.comments = [];
+        cardToUpdate.comments[action.commentId] = action.commentData;
+      }
       return newState;
     }
     default:

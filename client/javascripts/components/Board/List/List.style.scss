@@ -6,8 +6,33 @@
     background-color: aliceblue;
     padding: 0.8rem;
     border-radius: 0.35rem;
+    height: 100%;
 
-    &__title {
+    &__upper {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &-title {
+            font-weight: 600;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }    
+
+        &-remove {
+            font-weight: 600;
+            font-size: 2rem;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__edit-title {
         font-weight: 600;
         margin-bottom: 1rem;
     }

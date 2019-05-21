@@ -1,0 +1,27 @@
+.comments {
+    overflow: hidden;
+
+    &-list {
+        display: flex;
+        flex-direction: column;
+        margin: 0.5rem 0;
+
+        ul {
+            margin: 0;
+        }
+    }
+
+    &-title {
+        font-size: 0.95rem;
+        font-weight: 501;
+    }
+
+    &-content {
+        margin: 0.25rem 0;
+        font-size: 0.85rem;
+    }
+}
+
+.item-adder-passive {
+    widows: 16.5rem;;
+}
