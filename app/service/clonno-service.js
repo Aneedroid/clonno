@@ -7,7 +7,7 @@ exports.create = (req, res) => {
   // Validate request
   if (!req.body.content) {
     return res.status(400).send({
-      message: 'Board content can not be empty'
+      message: 'Board content can not be empty',
     });
   }
 
@@ -21,7 +21,7 @@ exports.create = (req, res) => {
 
   // Create a List
   const list = new models.List({
-    _id: mongoose.Types.ObjectId(),
+    id: mongoose.Types.ObjectId(),
     title: req.body.list.title,
     cards: [card],
   });
@@ -64,14 +64,24 @@ exports.findAll = (req, res) => {
 // Update a Board identified by the BoardId in the request
 exports.update = (req, res) => {
   // Validate Request
-  if (!req.body.content) {
+  if (!req.body.board) {
     return res.status(400).send({
       message: 'Board content can not be empty',
     });
   }
 
   // Find Board and update it with the request body
-  models.ClonnoModel.findByIdAndUpdate(req.params.boardId, req.body, {new: true})
+  // Hardcoding board id for now
+  models.ClonnoModel.update({
+    '_id': '5ce0dcac5dc1215306079e51',
+    'boards._id': req.params.boardId,
+  }, 
+  {
+    '$set': {
+      'boards.$.title': req.body.board.title,
+      'boards.$.lists': req.body.board.lists,
+    },
+  })
     .then(board => {
       if (!board) {
         return res.status(404).send({
