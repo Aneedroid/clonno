@@ -17,6 +17,17 @@
         }
     }
 
+    &__stealth {
+        font-size: 1rem;
+        padding: 0.45rem;
+        height: 2rem;
+        background-color: aliceblue;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
     &__active {
         min-height: 6rem;
         padding: 1rem;

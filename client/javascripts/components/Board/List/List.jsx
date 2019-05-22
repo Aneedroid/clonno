@@ -5,6 +5,7 @@ import Card from './Card';
 import ItemAdder from '../../ItemAdder';
 
 import './List.style.scss';
+import CardDropper from '../../CardDropper/CardDropper';
 
 class List extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class List extends React.Component {
   }
 
   render = () => {
-    const { title, cards, updateCard, boardId, listId, updateComment, updateList } = this.props;
+    const { title, cards, updateCard, boardId, listId, updateComment, updateList, dropCard } = this.props;
     return (
       <div className="list">
         {!this.state.isTitlePressed ? 
@@ -44,16 +45,18 @@ class List extends React.Component {
           {cards.map((card, index) => {
             return <Card
               key={index}
-              title={card.title}
-              description={card.description}
-              comments={card.comments}
+              title={card && card.title ? card.title : 'Untitled card'}
+              description={card && card.description ? card.description : ''}
+              comments={card && card.comments ? card.comments : []}
               boardId={boardId}
               listId={listId}
               cardId={index}
               updateComment={updateComment}
               updateCard={updateCard}
+              dropCard={dropCard}
             />;
           })}
+          {cards.length === 0 ? <CardDropper boardId={boardId} listId={listId} cardId={0} dropCard={dropCard} updateCard={updateCard}/> : null}
         </div>
         <ItemAdder type={'Card'} updateCard={updateCard} boardId={boardId} listId={listId} lastIndex={cards.length} />
       </div>
@@ -73,6 +76,7 @@ List.propTypes = {
   boardId: PropTypes.number,
   listId: PropTypes.number,
   updateComment: PropTypes.func,
+  dropCard: PropTypes.func,
 };
 
 export default List;

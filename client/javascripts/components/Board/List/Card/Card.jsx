@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ItemTypes } from '../../../../constants/';
+import { DragSource, DropTarget } from 'react-dnd';
+
 import Comment from './Comment';
 import './Card.style.scss';
 
@@ -16,16 +19,7 @@ class Card extends React.Component {
     };
   }
 
-  renderPassive = () => {
-    const { title } = this.props;
-    return (
-      <div className="card__passive">
-        <div className="card__passive-title" role="presentation" onClick={() => this.setState({isActive: true})}>{title}</div>
-      </div>
-    );
-  }
-
-  renderEditTitle = () => {
+  renderTitleInput = () => {
     const { updateCard, boardId, listId, cardId } = this.props;
     return (
       <div className="card__active__upper-edit">
@@ -73,12 +67,19 @@ class Card extends React.Component {
     );
   }
 
+  renderPassive = () => {
+    const { title } = this.props;
+    return (
+      <div className="card__passive-title" role="presentation" onClick={() => this.setState({isActive: true})}>{title}</div>
+    );
+  }
+
   renderActive = () => {
     const { title, description, comments, boardId, listId, cardId, updateComment, updateCard } = this.props;
     return (
       <div className="card__active">
         <div className="card__active__upper">
-          {this.state.isTitlePressed ? this.renderEditTitle()
+          {this.state.isTitlePressed ? this.renderTitleInput()
             : <div role="presentation" className="card__active__upper-title" onClick={() => this.setState({isTitlePressed: true})}>{title}</div>}
           <div className="card__active__upper-close" role="presentation" onClick={() => this.setState({isActive: false})}>X</div>
         </div>
@@ -91,11 +92,12 @@ class Card extends React.Component {
   }
 
   render = () => {
-    return (
+    const { connectDragSource, connectDropTarget } = this.props;
+    return connectDropTarget(connectDragSource(
       <div className="card">
         {this.state.isActive ? this.renderActive() : this.renderPassive()}
       </div>
-    );
+    ));
   };
 }
 
@@ -112,6 +114,74 @@ Card.propTypes = {
   cardId: PropTypes.number,
   updateComment: PropTypes.func,
   updateCard: PropTypes.func,
+  dropCard: PropTypes.func,
 };
 
-export default Card;
+export default DropTarget(
+  ItemTypes.CARD,
+  {
+    drop(props, monitor) {
+      const constructCard = (title, description, comments) => {
+        return {
+          title,
+          description,
+          comments,
+        };
+      }
+  
+      const dragBoardId = monitor.getItem().boardId;
+      const dragListId = monitor.getItem().listId;
+      const dragCardId = monitor.getItem().cardId;
+
+      const dropBoardId = props.boardId;
+      const dropListId = props.listId;
+      const dropCardId = props.cardId;
+
+      // console.log('dropBoardId : ', dropBoardId);
+      console.log('dropListId : ', dropListId);
+      console.log('dropCardId : ', dropCardId);
+
+      // Don't replace items with themselves
+      if (dragListId === dropListId && dragCardId === dropCardId) {
+        console.log('Cant move the same list to its very place');
+        return;
+      }
+
+      // First take card off from the source list.
+      props.updateCard(dragBoardId, dragListId, dragCardId);
+
+      // Add the card to the new destination list.
+      const dragCardTitle = monitor.getItem().title;
+      const dragCardDescription = monitor.getItem().description;
+      const dragCardComments = monitor.getItem().comments;
+      const dropCard = constructCard(dragCardTitle, dragCardDescription, dragCardComments);
+      props.dropCard(dropBoardId, dropListId, dropCardId, dropCard);
+    },
+  },
+  connect => ({
+    connectDropTarget: connect.dropTarget(),
+  }),
+)(
+  DragSource(
+    ItemTypes.CARD,
+    {
+      beginDrag: (props) => {
+        // console.log('From drag source - listId: ', props.listId);
+        // console.log('From drag source - cardId: ', props.cardId);
+
+        return {
+          boardId: props.boardId,
+          cardId: props.cardId,
+          listId: props.listId,
+          title: props.title,
+          description: props.description,
+          comments: props.comments,
+        };
+      },
+    },
+    (connect, monitor) => ({
+      connectDragSource: connect.dragSource(),
+      isDragging: monitor.isDragging(),
+    }),
+  )(Card),
+);

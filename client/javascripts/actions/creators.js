@@ -6,6 +6,7 @@ import {
   UPDATE_CARD,
   UPDATE_CLONNO_TO_MONGO,
   UPDATE_COMMENT,
+  DROP_CARD,
 } from './types';
 
 export const fetchClonno = () => {
@@ -18,6 +19,10 @@ export const updateClonno = clonnoData => {
 
 export const updateCard = (boardId, listId, cardId, cardData) => {
   return { type: UPDATE_CARD, boardId, listId, cardId, cardData };
+};
+
+export const dropCard = (boardId, listId, cardId, cardData) => {
+  return { type: DROP_CARD, boardId, listId, cardId, cardData };
 };
 
 export const updateBoard = (boardId, boardData) => {
@@ -33,6 +38,5 @@ export const updateClonnoToMongo = saveClonno => {
 };
 
 export const updateComment = (boardId, listId, cardId, commentId, commentData) => {
-  console.log('Reached action');
   return { type: UPDATE_COMMENT, boardId, listId, cardId, commentId, commentData };
 };

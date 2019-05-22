@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { DragDropContextProvider } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
+
 import Overview from '../Overview';
 import Board from '../Board';
 
@@ -17,10 +20,12 @@ class App extends React.Component {
 
   render = () => {
     return (
-      <div>
-        <Overview title={'Clonno'} subTitle={'A minimalist list making application for team collaboration activities'}/>
-        <div className="app__board"><Board /></div>
-      </div>
+      <DragDropContextProvider backend={HTML5Backend}>
+        <div>
+          <Overview title={'Clonno'} subTitle={'A minimalist list making application for distributed team collaboration activities'}/>
+          <div className="app__board"><Board /></div>
+        </div>
+      </DragDropContextProvider>
     );
   }
 }

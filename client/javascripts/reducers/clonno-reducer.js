@@ -1,4 +1,4 @@
-import { UPDATE_CLONNO, UPDATE_CARD, UPDATE_LIST, UPDATE_COMMENT } from '../actions/types';
+import { UPDATE_CLONNO, UPDATE_CARD, UPDATE_LIST, UPDATE_COMMENT, DROP_CARD } from '../actions/types';
 
 const clonno = {};
 
@@ -10,9 +10,8 @@ export default (state = clonno, action) => {
       return newState;
     }   
     case UPDATE_CARD: {
-      let newState = { ...state };
-      
-      const boardToUpdate = newState.boards[action.boardId];
+      let newState = { ...state };      
+      const boardToUpdate = action.boardId ? newState.boards[action.boardId] : newState.boards[0];
       const listToUpdate = boardToUpdate.lists[action.listId];
       const cardData = action.cardData;
 
@@ -36,8 +35,30 @@ export default (state = clonno, action) => {
       } else {
         listToUpdate.cards.splice(action.cardId, 1);
       }
+      return newState;
+    }
+    case DROP_CARD: {
+      let newState = { ...state };      
+      const boardToUpdate = action.boardId ? newState.boards[action.boardId] : newState.boards[0];
+      const listToUpdate = boardToUpdate.lists[action.listId];
+      const cardData = action.cardData;
 
-
+      if (action.cardId > 0) {
+        const newCardContents = {
+          ...listToUpdate.cards[action.cardId],
+          ...cardData,
+        };
+        listToUpdate.cards.splice(action.cardId, 0, newCardContents);
+      } else {
+        if (!listToUpdate.cards) {
+          listToUpdate.cards = [];
+        }
+        const newCardContents = {
+          ...listToUpdate.cards[action.cardId],
+          ...cardData,
+        };
+        listToUpdate.cards.splice(action.cardId + 1, 0, newCardContents);
+      }
       return newState;
     }
     case UPDATE_LIST: {

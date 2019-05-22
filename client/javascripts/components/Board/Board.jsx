@@ -8,7 +8,7 @@ import './Board.style.scss';
 
 const mapBoardsAndRender = () => {};
 
-const renderBoard = (board, updateCard, updateList, updateClonnoToMongo, updateComment) => {
+const renderBoard = (board, updateCard, updateList, updateClonnoToMongo, updateComment, dropCard) => {
   const lists = board && board.lists ? board.lists : [];
   // Assume board Index as 0 for now
   return (
@@ -21,13 +21,14 @@ const renderBoard = (board, updateCard, updateList, updateClonnoToMongo, updateC
         {lists.map((list, index) => {
           return <List
             key={index}
-            title={list.title}
-            cards={list.cards}
+            title={list && list.title ? list.title : 'Untitled list'}
+            cards={list && list.cards ? list.cards : []}
             updateCard={updateCard}
             boardId={0}
             listId={index}
             updateComment={updateComment}
             updateList={updateList}
+            dropCard={dropCard}
           />;
         })}
         <ItemAdder type={'List'} updateList={updateList} boardId={0} lastIndex={lists.length} />
@@ -36,11 +37,11 @@ const renderBoard = (board, updateCard, updateList, updateClonnoToMongo, updateC
   );
 };
 
-const Board = ({ clonno, updateCard, updateList, updateClonnoToMongo, updateComment }) => {
+const Board = ({ clonno, updateCard, updateList, updateClonnoToMongo, updateComment, dropCard }) => {
   const boards = clonno && clonno.boards ? clonno.boards : [];
   return (
     <div>
-      { boards.length !== 0 ? boards.length > 1 ? mapBoardsAndRender() : renderBoard(clonno.boards[0], updateCard, updateList, updateClonnoToMongo, updateComment) : null }
+      { boards.length !== 0 ? boards.length > 1 ? mapBoardsAndRender() : renderBoard(clonno.boards[0], updateCard, updateList, updateClonnoToMongo, updateComment, dropCard) : null }
     </div>
   );
 };
@@ -51,6 +52,7 @@ Board.propTypes = {
   updateCard: PropTypes.func,
   updateClonnoToMongo: PropTypes.func,
   updateComment: PropTypes.func,
+  dropCard: PropTypes.func,
 };
 
 export default Board;
