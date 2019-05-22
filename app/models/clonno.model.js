@@ -5,7 +5,7 @@ const cardSchema = mongoose.Schema(
     _id: mongoose.Schema.Types.ObjectId,
     title: String,
     description: String,
-    comments: [String]
+    comments: [String],
   }
 );
 
@@ -13,7 +13,7 @@ const listSchema = mongoose.Schema(
   {
     _id: mongoose.Schema.Types.ObjectId,
     title: String,
-    cards: [cardSchema]
+    cards: [cardSchema],
   }
 );
 

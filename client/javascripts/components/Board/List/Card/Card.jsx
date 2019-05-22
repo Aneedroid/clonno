@@ -137,13 +137,8 @@ export default DropTarget(
       const dropListId = props.listId;
       const dropCardId = props.cardId;
 
-      // console.log('dropBoardId : ', dropBoardId);
-      console.log('dropListId : ', dropListId);
-      console.log('dropCardId : ', dropCardId);
-
       // Don't replace items with themselves
       if (dragListId === dropListId && dragCardId === dropCardId) {
-        console.log('Cant move the same list to its very place');
         return;
       }
 
@@ -166,9 +161,6 @@ export default DropTarget(
     ItemTypes.CARD,
     {
       beginDrag: (props) => {
-        // console.log('From drag source - listId: ', props.listId);
-        // console.log('From drag source - cardId: ', props.cardId);
-
         return {
           boardId: props.boardId,
           cardId: props.cardId,

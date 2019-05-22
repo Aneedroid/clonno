@@ -5,31 +5,27 @@ const models = require('../models/clonno.model.js');
 // Create and Save a new Board
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.content) {
+  if (!req.body.board) {
     return res.status(400).send({
-      message: 'Board content can not be empty',
+      message: 'Boards content can not be empty',
     });
   }
 
   // Create a Card
   const card = new models.Card({
     _id: mongoose.Types.ObjectId(),
-    title: req.body.card.title,
-    description: req.body.card.description,
-    comments: req.body.card.comments,
   });
 
   // Create a List
   const list = new models.List({
-    id: mongoose.Types.ObjectId(),
-    title: req.body.list.title,
+    _id: mongoose.Types.ObjectId(),
     cards: [card],
   });
 
   // Create a Board
   const board = new models.Board({
     _id: mongoose.Types.ObjectId(),
-    title: req.body.title,
+    title: req.body.board.title,
     lists: [list],
   });
 
@@ -73,7 +69,7 @@ exports.update = (req, res) => {
   // Find Board and update it with the request body
   // Hardcoding board id for now
   models.ClonnoModel.update({
-    '_id': '5ce0dcac5dc1215306079e51',
+    '_id': '5ce5363c4292fb93d5793dd3',
     'boards._id': req.params.boardId,
   }, 
   {

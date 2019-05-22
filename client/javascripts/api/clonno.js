@@ -18,3 +18,12 @@ export const putClonnoData = async (saveClonno) => {
     return {};
   }
 };
+
+export const postClonnoData = async (saveClonno) => {
+  try {
+    const response = await http.post(`/api/boards/`, {board: saveClonno});
+    return response.data;
+  } catch (err) {
+    return {};
+  }
+};

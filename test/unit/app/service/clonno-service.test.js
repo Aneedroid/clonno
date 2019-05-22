@@ -58,7 +58,6 @@ describe('Clonno Service tests', () => {
       .end((err, res) => {
         expect(res.status).toBe(200);
         expect(res.body.error).toBeFalsy();
-        console.log('Data from test: ', res.body);
         done();
       });
   });

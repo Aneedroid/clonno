@@ -27,7 +27,6 @@ class ItemAdder extends React.Component {
     };
 
     if (type === 'Card' && updateCard) {
-      console.log('Rendering Add Card matter: ', boardId, listId, lastBoxIndex, body);
       updateCard(boardId, listId, lastBoxIndex, body);
     }
     if (type === 'List' && updateList) {

@@ -26,7 +26,6 @@ const squareTarget = {
 
     // Don't replace items with themselves
     if (dragListId === dropListId && dragCardId === dropCardId) {
-      console.log('Cant move the same list to its very place');
       return;
     }
 

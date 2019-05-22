@@ -1,4 +1,4 @@
-import { UPDATE_CLONNO, UPDATE_CARD, UPDATE_LIST, UPDATE_COMMENT, DROP_CARD } from '../actions/types';
+import { UPDATE_CLONNO, UPDATE_CARD, UPDATE_LIST, UPDATE_COMMENT, DROP_CARD, UPDATE_BOARD } from '../actions/types';
 
 const clonno = {};
 
@@ -8,7 +8,25 @@ export default (state = clonno, action) => {
       let newState = { ...state };
       newState = action.clonnoData;
       return newState;
-    }   
+    }
+    case UPDATE_BOARD: {
+      let newState = {...state};
+      let boardToUpdate = newState && newState.boards && newState.boards.length > 0 ? newState.boards[action.boardId] : [];
+      const boardData = action.boardData;
+
+      const newBoardContents = {
+        ...boardToUpdate,
+        ...boardData,
+      };
+
+      if (boardToUpdate.length > 0) {
+        newState.boards[action.boardId] = newBoardContents;
+      } else {
+        newState.boards = [];
+        newState.boards[action.boardId] = newBoardContents;
+      }
+      return newState;
+    }
     case UPDATE_CARD: {
       let newState = { ...state };      
       const boardToUpdate = action.boardId ? newState.boards[action.boardId] : newState.boards[0];
@@ -73,8 +91,7 @@ export default (state = clonno, action) => {
             ...listData,
           };
           boardToUpdate.lists[action.listId] = newListContents;
-        }
-        else {
+        } else {
           if (!boardToUpdate.lists) {
             boardToUpdate.lists = [];
           }

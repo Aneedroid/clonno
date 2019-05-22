@@ -6,7 +6,9 @@ const clonnoService = require('../service/clonno-service');
 
 const router = express.Router();
 
-const dbUrl = 'mongodb://localhost:27017/clonno?authSource=clonno';
+// const dbUrl = 'mongodb://localhost:27017/clonno?authSource=clonno';
+const dbUrl = 'mongodb+srv://Anee:amazingpassword@clonno01-ef7yp.mongodb.net/clonno?retryWrites=true';
+
 router.use(bodyParser.json());
 
 mongoose.connect(dbUrl).then(() => {
