@@ -1,4 +1,4 @@
-# clonno
+# Clonno
 
 A minimalist list making application for team collaboration activities.
 
@@ -6,15 +6,7 @@ A minimalist list making application for team collaboration activities.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
+### Install and run
 
 Install dependencies
 
@@ -22,25 +14,13 @@ Install dependencies
 npm install
 ```
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+Run the app
 
 ```
-Give an example
+npm run start-dev:watch
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+The webApp will run in http://localhost:8090/overview
 
 ## Built With
 
