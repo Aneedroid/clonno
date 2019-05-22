@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'semantic-ui-react';
 
 import List from './List';
 import ItemAdder from '../ItemAdder';
@@ -33,7 +34,7 @@ class Board extends React.Component {
                  }}/>
              </div> 
            }
-           <button className="board-top__save" onClick={() => updateClonnoToMongo(board)}>Save</button>
+           <Button size="medium" onClick={() => updateClonnoToMongo(board)}>Save</Button>
          </div>
          <div className="board__lists">
            {lists.map((list, index) => {

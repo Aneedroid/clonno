@@ -7,10 +7,15 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        padding: 0 1rem;
 
         &__name {
             margin-left: 1.5rem;
             font-size: 2.25rem;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         &__save {

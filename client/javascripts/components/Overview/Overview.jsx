@@ -7,7 +7,7 @@ import './Overview.style.scss';
 const Overview = ({ title, subTitle }) => {
   return (
     <div className="overview-container" align="center">
-      <Header as="h1" color="orange" block inverted>
+      <Header as="h1" inverted color="blue" block>
         { title }
       </Header>
       <Header size="tiny" >
