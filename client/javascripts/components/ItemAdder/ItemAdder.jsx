@@ -9,15 +9,9 @@ class ItemAdder extends React.Component {
     this.state = {
       openAdd: false,
       inputValue: '',
-      lastBoxIndex: 0,
+      lastBoxIndex: props.lastIndex,
     };
   }
-
-  componentDidMount = () => {
-    this.setState({
-      lastBoxIndex: this.props.lastIndex ? this.props.lastIndex : 0,
-    });
-  };
 
   onAddhandler = () => {
     const { type, boardId, listId, updateCard, updateList, updateComment, cardId } = this.props;

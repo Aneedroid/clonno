@@ -61,10 +61,7 @@ class Board extends React.Component {
     const boards = clonno && clonno.boards ? clonno.boards : [];
     return (
       <div>
-        { boards.length !== 0 ? this.renderBoard(boards[0], updateCard, updateList, updateClonnoToMongo, updateComment, dropCard)
-          :
-          this.renderBoard([], updateCard, updateList, updateClonnoToMongo, updateComment, dropCard)
-        }
+        { boards.length !== 0 ? this.renderBoard(boards[0], updateCard, updateList, updateClonnoToMongo, updateComment, dropCard) : null}
       </div>
     );
   };
