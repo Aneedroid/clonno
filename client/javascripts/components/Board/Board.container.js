@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
-import { getClonno } from '../../utils/redux-selectors';
+import { getClonno, getAppLoading } from '../../utils/redux-selectors';
 import { updateBoard, updateCard, updateList, updateClonnoToMongo as putToMongo, updateComment, dropCard } from '../../actions';
 
 const mapStateToProps = state => {
   return {
     clonno: getClonno(state),
+    isAppLoading: getAppLoading(state),
   };
 };
 

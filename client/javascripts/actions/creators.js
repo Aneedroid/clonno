@@ -7,6 +7,7 @@ import {
   UPDATE_CLONNO_TO_MONGO,
   UPDATE_COMMENT,
   DROP_CARD,
+  APP_LOADING
 } from './types';
 
 export const fetchClonno = () => {
@@ -40,3 +41,7 @@ export const updateClonnoToMongo = saveClonno => {
 export const updateComment = (boardId, listId, cardId, commentId, commentData) => {
   return { type: UPDATE_COMMENT, boardId, listId, cardId, commentId, commentData };
 };
+
+export const isLoading = (loading) => {
+  return { type: APP_LOADING, loading };
+}

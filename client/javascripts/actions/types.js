@@ -6,3 +6,4 @@ export const UPDATE_CARD = 'update_card';
 export const DROP_CARD = 'drop_card';
 export const UPDATE_COMMENT = 'update_comment';
 export const UPDATE_CLONNO_TO_MONGO = 'update_clonno_to_mongo';
+export const APP_LOADING = 'app_loading';

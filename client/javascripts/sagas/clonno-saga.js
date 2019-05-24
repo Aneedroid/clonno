@@ -1,7 +1,7 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 
 import { FETCH_CLONNO, UPDATE_CLONNO_TO_MONGO } from '../actions/types';
-import { updateClonno } from '../actions';
+import { updateClonno, isLoading } from '../actions';
 import { getClonnoData, putClonnoData } from '../api/clonno';
 
 export const getClonno = function* () {
@@ -14,9 +14,11 @@ export const getClonno = function* () {
 };
 
 export const updateClonnoToMongo = function* (action) {
+  yield put(isLoading(true));
   try {
     yield call(putClonnoData, action.saveClonno);
   } catch (err) {}
+  yield put(isLoading(false));
 };
 
 export default /* istanbul ignore next */ function* navSaga() /* istanbul ignore next */ {

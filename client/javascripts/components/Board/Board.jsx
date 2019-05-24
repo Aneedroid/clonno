@@ -17,7 +17,7 @@ class Board extends React.Component {
   }
 
    renderBoard = (board, updateCard, updateList, updateClonnoToMongo, updateComment, dropCard) => {
-     const { updateBoard } = this.props;
+     const { updateBoard, isAppLoading } = this.props;
      const lists = board && board.lists ? board.lists : [];
      // Assume board Index as 0 for now
      return (
@@ -34,7 +34,7 @@ class Board extends React.Component {
                  }}/>
              </div> 
            }
-           <Button size="medium" onClick={() => updateClonnoToMongo(board)}>Save</Button>
+           <Button loading={isAppLoading} size="large" color="grey" onClick={() => updateClonnoToMongo(board)}>Save</Button>
          </div>
          <div className="board__lists">
            {lists.map((list, index) => {
@@ -75,6 +75,7 @@ Board.propTypes = {
   updateComment: PropTypes.func,
   dropCard: PropTypes.func,
   updateBoard: PropTypes.func,
+  isAppLoading: PropTypes.bool,
 };
 
 export default Board;
