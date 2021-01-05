@@ -20,7 +20,7 @@
   "author": "Aneerudh",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
